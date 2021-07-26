@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weatherNavigation"
+    app:startDestination="@+id/weatherList">
+  <fragment
+      android:id="@+id/weatherList"
+      android:name="com.lowe.weather.ui.weatherlist.WeatherListFragment"
+      android:label="WeatherListFragment"
+      tools:layout="@layout/weather_list_fragment">
+    <argument
+        android:name="cityName"
+        app:argType="string"
+        app:nullable="false" />
+    <action
+        android:id="@+id/action_weatherList_to_weatherListDetail"
+        app:destination="@id/weatherListDetail" />
+
+  </fragment>
+
+  <fragment android:id="@+id/weatherListDetail"
+      android:name="com.lowe.weather.ui.weatherlist_detail.WeatherListDetailFragment"
+      android:label="WeatherListDetail"
+      tools:layout="@layout/weather_list_detail_fragment">
+    <argument
+        android:name="cityName"
+        app:argType="string"
+        app:nullable="false" />
+    <argument
+        android:name="weatherItem"
+        app:argType="com.lowe.weather.di.model.WeatherItem"
+        app:nullable="false" />
+  </fragment>
+
+  <fragment
+      android:id="@+id/citySearchFragment"
+      android:name="com.lowe.weather.ui.city_search.CitySearchFragment"
+      android:label="CitySearchFragment"
+      tools:layout="@layout/city_search_fragment">
+
+    <action
+        android:id="@+id/showWeatherForCity"
+        app:destination="@id/weatherList">
+      <argument
+          android:name="cityName"
+          app:argType="string"
+          app:nullable="false" />
+    </action>
+    <action
+        android:id="@+id/navigateToDetail"
+        app:destination="@id/weatherList" >
+      <argument
+          android:name="cityName"
+          app:argType="string"
+          app:nullable="false" />
+      <argument
+          android:name="weatherItem"
+          app:argType="com.lowe.weather.di.model.WeatherItem"
+          app:nullable="false" />
+    </action>
+  </fragment>
+</navigation>

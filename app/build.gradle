@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../dependencies.gradle'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+dependencies {
+  implementation project(path: ':core')
+  implementation project(path: ':weather')
+}
+
+android {
+
+  compileSdkVersion 30
+  buildToolsVersion "30.0.3"
+
+  defaultConfig {
+    applicationId "com.lowe.weatherapp"
+    minSdkVersion 22
+    targetSdkVersion 30
+    versionCode 1
+    versionName "1.0"
+    flavorDimensions "default"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  dataBinding {
+    enabled true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+  flavorDimensions 'development'
+  productFlavors {
+    development {
+      dimension 'development'
+    }
+  }
+}
